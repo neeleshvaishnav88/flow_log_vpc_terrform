@@ -42,13 +42,16 @@ resource "aws_iam_policy" "flow_log_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "ec2.amazonaws.com"
-        }
-      },
+        Effect   = "Allow"
+        Action   = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogGroups",
+          "logs:DescribeLogStreams"
+        ]
+        Resource = "*"
+      }
     ]
   })
 }
